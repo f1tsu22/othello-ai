@@ -1,4 +1,4 @@
-# •Ï”–¼‚âŠÖ”–¼‚ğ‘å•‚É•ÏX
+# å¤‰æ•°åã‚„é–¢æ•°åã‚’å¤§å¹…ã«å¤‰æ›´
 
 import json
 import information
@@ -6,7 +6,7 @@ import OthelloLogic
 
 def joseki(board, moves):
 
-    def getTurns(board): #‰½è–Ú‚Å‚ ‚é‚©‚ğ’²‚×‚é
+    def getTurns(board): #ä½•æ‰‹ç›®ã§ã‚ã‚‹ã‹ã‚’èª¿ã¹ã‚‹
         sum0 = 0
         for i in range(8):
             for j in range(8):
@@ -15,29 +15,29 @@ def joseki(board, moves):
         return 64 - sum0 - 3
 
 
-    def getNewMove(pre_board, board):  #V‚½‚É‘Å‚½‚ê‚½è‚ÌˆÊ’u‚ğæ“¾
+    def getNewMove(pre_board, board):  #æ–°ãŸã«æ‰“ãŸã‚ŒãŸæ‰‹ã®ä½ç½®ã‚’å–å¾—
         for i in range(8):
             for j in range(8):
                 if (pre_board[i][j] == 0) and (board[i][j] == -1):
-                    return [j, i] #‚±‚±‚Å[—ñ,s]‚ÌŒ`®‚É•ÏŠ·
+                    return [j, i] #ã“ã“ã§[åˆ—,è¡Œ]ã®å½¢å¼ã«å¤‰æ›
                     break
 
 
-    def getReflectPattern(newmove): #‘Î‹Ç‚Ì‘æˆêè‚ª‘Å‚½‚ê‚½êŠ‚²‚Æ‚Éê‡•ª‚¯B1“x‚¾‚¯Às
-        if newmove == [5,4]:   # f5 -> ‚»‚Ì‚Ü‚Ü
+    def getReflectPattern(newmove): #å¯¾å±€ã®ç¬¬ä¸€æ‰‹ãŒæ‰“ãŸã‚ŒãŸå ´æ‰€ã”ã¨ã«å ´åˆåˆ†ã‘ã€‚1åº¦ã ã‘å®Ÿè¡Œ
+        if newmove == [5,4]:   # f5 -> ãã®ã¾ã¾
             return 1
-        elif newmove == [4,5]: # e6 -> ü‘ÎÌ
+        elif newmove == [4,5]: # e6 -> ç·šå¯¾ç§°
             return 2
-        elif newmove == [2,3]: # c4 -> “_‘ÎÌ
+        elif newmove == [2,3]: # c4 -> ç‚¹å¯¾ç§°
             return 3
-        elif newmove == [3,2]: # d3 -> ü‘ÎÌ + “_‘ÎÌ
+        elif newmove == [3,2]: # d3 -> ç·šå¯¾ç§° + ç‚¹å¯¾ç§°
             return 4
         else:
-            return 5    #‚±‚Á‚¿‚ªæU‚Ìê‡
+            return 5    #ã“ã£ã¡ãŒå…ˆæ”»ã®å ´åˆ
 
 
-    def reflectIn(newmove, pattern):    #–Ø\‘¢‚Ìª‚ª[4,5]‚É‚È‚é‚æ‚¤‚É•ÏŠ·
-                                        # •ÏŠ·Œã‚Ì•Ï”‚É‚ÍÚ“ªŒê RF ‚ğ‚Â‚¯‚é
+    def reflectIn(newmove, pattern):    #æœ¨æ§‹é€ ã®æ ¹ãŒ[4,5]ã«ãªã‚‹ã‚ˆã†ã«å¤‰æ›
+                                        # å¤‰æ›å¾Œã®å¤‰æ•°ã«ã¯æ¥é ­èª RF ã‚’ã¤ã‘ã‚‹
         if pattern == 1 or pattern == 5:
             return newmove
         elif pattern == 2:
@@ -60,7 +60,7 @@ def joseki(board, moves):
         bestmove = None
         for i in range(len(history)-1): 
             for j in range(len(child)):
-                tmpchild = child[j] #tmpchild‚ÍdictŒ^
+                tmpchild = child[j] #tmpchildã¯dictå‹
                 if history[i+1] == tmpchild['move']:
                     child = tmpchild['children']
                     break
@@ -73,7 +73,7 @@ def joseki(board, moves):
             evaluations.append(sortByEvaluation[x]['evaluation'])
         #print()
         #print('options')
-        #print('No,À•W,•]‰¿’l')
+        #print('No,åº§æ¨™,è©•ä¾¡å€¤')
         #for x in range(len(sortByEvaluation)):
             #print(x+1, options[x],evaluations[x])
         #print()
@@ -81,16 +81,16 @@ def joseki(board, moves):
         try:
             bestmove = sortByEvaluation[0]['move']
             BMEvaluation = sortByEvaluation[0]['evaluation']
-            print('‘I‚ñ‚¾è :', bestmove, "  •]‰¿’l :", BMEvaluation)
+            print('é¸ã‚“ã æ‰‹ :', bestmove, "  è©•ä¾¡å€¤ :", BMEvaluation)
         except:
             bestmove = None
-            print('ƒtƒ@ƒCƒ‹“à‚ÉŸ‚Ìè‚ÌŒó•â‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½B')
+            print('ãƒ•ã‚¡ã‚¤ãƒ«å†…ã«æ¬¡ã®æ‰‹ã®å€™è£œãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚')
         return bestmove
     
 
 
 
-    def reflectOut(bestmove, pattern): # “Ç‚İ‚İ‚Æ‚Í‹t‚Ì‘ÎÌˆÚ“®‚ğ‚·‚é
+    def reflectOut(bestmove, pattern): # èª­ã¿è¾¼ã¿æ™‚ã¨ã¯é€†ã®å¯¾ç§°ç§»å‹•ã‚’ã™ã‚‹
         if pattern == 1 or pattern == 5:
             return bestmove
         elif pattern == 2:
@@ -102,38 +102,37 @@ def joseki(board, moves):
             else:
                 return [int(j), int(i)]
     
-    # ‚±‚±‚©‚çÀs
-    i = information
+    # ã“ã“ã‹ã‚‰å®Ÿè¡Œ
     turnNum = getTurns(board)
-    if i.pre_board != board:
-        newMove = getNewMove(i.pre_board, board)
+    if information.pre_board != board:
+        newMove = getNewMove(information.pre_board, board)
     else:
-        newMove = i.pre_bestMove
-    if i.step == 0:
-        i.pattern = getReflectPattern(newMove)
-        print('pattern :', i.pattern)
-        i.step = 1
+        newMove = information.pre_bestMove
+    if information.step == 0:
+        information.pattern = getReflectPattern(newMove)
+        print('pattern :', information.pattern)
+        information.step = 1
     if turnNum > 1:
-        RFnewMove = reflectIn(newMove, i.pattern)
+        RFnewMove = reflectIn(newMove, information.pattern)
         #print('RFnewMove :', RFnewMove)
-        if RFnewMove not in i.history:
-            i.history.append(RFnewMove)
-    #print('history1 :', i.history)
+        if RFnewMove not in information.history:
+            information.history.append(RFnewMove)
+    #print('history1 :', information.history)
     data = openFile('Joseki.json')
     try:
         if turnNum > 1:
-            RFbestMove = findBestMove(data, i.history)
+            RFbestMove = findBestMove(data, information.history)
         else:
             RFbestMove = [5,4]
-        #print('‘I‚ñ‚¾è :', RFbestMove)
-        i.history.append(RFbestMove)
-        #print('history2 :', i.history)
-        bestMove = reflectOut(RFbestMove, i.pattern)
-        i.pre_board = OthelloLogic.execute(board, bestMove, 1, 8)
-        OthelloLogic.printBoard(i.pre_board)
-        i.pre_bestMove = bestMove
+        #print('é¸ã‚“ã æ‰‹ :', RFbestMove)
+        information.history.append(RFbestMove)
+        #print('history2 :', information.history)
+        bestMove = reflectOut(RFbestMove, information.pattern)
+        information.pre_board = OthelloLogic.execute(board, bestMove, 1, 8)
+        OthelloLogic.printBoard(information.pre_board)
+        information.pre_bestMove = bestMove
         if bestMove not in moves:
-            print('‘I‚ñ‚¾è‚ªŒ»İ‚Ì‡–@è‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñ‚Å‚µ‚½B')
+            print('é¸ã‚“ã æ‰‹ãŒç¾åœ¨ã®åˆæ³•æ‰‹ã«å«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã§ã—ãŸã€‚')
             bestMove = None
     except:
         bestMove = None
