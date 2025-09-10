@@ -1,4 +1,4 @@
-stage = 1
+stage = 1  # 1 = 定石パート, 2 = 探索パート
 
 pre_board = [[ 0, 0, 0, 0, 0, 0, 0, 0],
              [ 0, 0, 0, 0, 0, 0, 0, 0],
@@ -9,14 +9,15 @@ pre_board = [[ 0, 0, 0, 0, 0, 0, 0, 0],
              [ 0, 0, 0, 0, 0, 0, 0, 0],
              [ 0, 0, 0, 0, 0, 0, 0, 0]]
 
-pattern = 0
+pattern = 0  #対称移動の種類
 
-history = []
+history = []  #初手から選択されてきた手の歴史を配列で管理
 
-step = 0
+step = 0  
 
-turnNum = 0
+turnNum = 0  #ターン数
 
-pre_bestMove = [0,0]
+pre_bestMove = [0,0]  #前回自ターンで選択した手（対称移動前）
 
-pre_RFbestMove = [0,0]
+
+pre_RFbestMove = [0,0]  #前回自ターンで選択した手（対称移動後）
